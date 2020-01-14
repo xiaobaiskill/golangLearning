@@ -1,0 +1,10 @@
+version: "3"
+
+services: 
+    swaggerui:
+        image: metz/swaggerui:latest
+        container_name: swaggerui
+        ports: 
+            - 8083:8080
+        volumes:
+            - ./swagger.json:/swaggerui/swagger/swagger.json:ro

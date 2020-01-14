@@ -1,0 +1,41 @@
+global:
+  # 抓取目标实例的频率时间值，默认10s
+    [ scrape_interval: <duration> | default = 10s ]
+
+    # 一次抓取请求超时时间值，默认10s
+    [ scrape_timeout: <duration> | default = 10s ]
+
+    # 执行配置文件规则的频率时间值, 默认1m
+    [ evaluation_interval: <duration> | default=1m ]
+
+    # 当和外部系统通信时(federation, remote storage, Alertmanager), 这些标签会增加到度量指标数据中
+    external_labels:
+      [ <labelname>: <labelvalue> ... ]
+
+# 规则文件指定规则文件路径列表。规则和警报是从所有匹配的文件中读取的
+rule_files:
+  [ - <filepath_glob> ...]
+
+# 抓取配置的列表
+scrape_configs:
+  [ - <scrape_config> ... ]
+
+# 警报设置
+alerting:
+  alert_relabel_configs:
+  [  - <relabel_config> ... ]
+  alertmanagers:
+  [ - <alertmanager_config> ... ]
+
+# 设置涉及到未来的实验特征
+remote_write:
+  [url: <string> ]
+    [ remote_timeout: <duration> | default = 30s ]
+    tls_config:
+    [ <tls_config> ]
+    [proxy_url: <string> ]
+    basic_auth:
+    [user_name: <string> ]
+    [password: <string>  ]
+    write_relabel_configs:
+    [ - <relabel_config> ... ]

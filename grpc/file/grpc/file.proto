@@ -1,0 +1,21 @@
+syntax="proto3";
+
+package file;
+
+service File {
+  rpc IsFile(FileName) returns (fileOk){}  // 判断文件是否存在 
+  rpc ReadFile(FileName) returns (stream FileByte){} // 读取文件
+  rpc WriteField(stream FileByte) returns (fileOk){} // 写入文件
+}
+
+message FileByte {
+  bytes byte = 1;
+}
+
+message FileName {
+    string name =1;
+}
+
+message fileOk {
+  bool ok = 1;
+}

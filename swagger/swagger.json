@@ -1,0 +1,725 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "风控相关API",
+    "version": "1.0.0",
+    "title": "风控相关API"
+  },
+  "host": "api.xxx.com",
+  "tags": [
+    {
+      "name": "risk",
+      "description": "风控相关API"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "basePath": "/v1",
+  "paths": {
+    "/risk/users": {
+      "get": {
+        "tags": [
+          "risk"
+        ],
+        "summary": "运营商会员查询",
+        "description": "运营商会员查询",
+        "operationId": "UsersPage",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "type": "integer",
+            "description": "页码",
+            "default": "1"
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "type": "integer",
+            "description": "页大小",
+            "default": "50"
+          },
+          {
+            "in": "query",
+            "name": "username",
+            "type": "string",
+            "description": "用户账户名",
+            "default": "zhangsan"
+          },
+          {
+            "in": "query",
+            "name": "realName",
+            "type": "string",
+            "description": "用户真实姓名",
+            "default": "张三"
+          },
+          {
+            "in": "query",
+            "type": "string",
+            "name": "registerIP",
+            "description": "用户注册IP",
+            "default": "127.0.0.1"
+          },
+          {
+            "in": "query",
+            "type": "string",
+            "name": "optCodes",
+            "description": "运营商code 多个以逗号分开 例如 k3244,l3489"
+          },
+          {
+            "in": "query",
+            "type": "string",
+            "name": "registerStartDate",
+            "description": "注册开始日期 例如： 2019-10-12"
+          },
+          {
+            "in": "query",
+            "type": "string",
+            "name": "registerEndDate",
+            "description": "注册结束日期 例如： 2019-10-13"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "返回",
+            "schema": {
+              "$ref": "#/definitions/riskUserResp"
+            }
+          },
+          "400": {
+            "description": "错误",
+            "schema": {
+              "$ref": "#/definitions/response"
+            }
+          }
+        }
+      }
+    },
+    "/risk/order": {
+      "get": {
+        "tags": [
+          "risk"
+        ],
+        "summary": "运营商用户注单查询",
+        "description": "运营商用户注单查询",
+        "operationId": "orderPage",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "type": "integer",
+            "description": "页码"
+          },
+          {
+            "in": "query",
+            "type": "integer",
+            "name": "pageSize",
+            "description": "页大小"
+          },
+          {
+            "in": "query",
+            "name": "optCode",
+            "type": "string",
+            "description": "运营商编号"
+          },
+          {
+            "in": "query",
+            "name": "month",
+            "type": "string",
+            "description": "月份 例如: 2019-10"
+          },
+          {
+            "in": "query",
+            "name": "userID",
+            "type": "integer",
+            "description": "用户ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "返回",
+            "schema": {
+              "$ref": "#/definitions/riskOrderResp"
+            }
+          },
+          "400": {
+            "description": "错误",
+            "schema": {
+              "$ref": "#/definitions/response"
+            }
+          }
+        }
+      }
+    },
+    "/risk/orderTotal": {
+      "get": {
+        "tags": [
+          "risk"
+        ],
+        "summary": "运营商注单统计查询",
+        "description": "运营商注单统计查询",
+        "operationId": "ordertotalCount",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "type": "integer",
+            "name": "page",
+            "description": "页码"
+          },
+          {
+            "in": "query",
+            "type": "integer",
+            "name": "pageSize",
+            "description": "页大小"
+          },
+          {
+            "in": "query",
+            "type": "string",
+            "name": "optCode",
+            "description": "运营商编号"
+          },
+          {
+            "in": "query",
+            "type": "string",
+            "name": "month",
+            "description": "月份 例如: 2019-10"
+          },
+          {
+            "in": "query",
+            "type": "string",
+            "name": "username",
+            "description": "用户名"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "返回",
+            "schema": {
+              "$ref": "#/definitions/riskOrderTotalResp"
+            }
+          },
+          "400": {
+            "description": "错误",
+            "schema": {
+              "$ref": "#/definitions/response"
+            }
+          }
+        }
+      }
+    },
+    "/risk/userProfit": {
+      "get": {
+        "tags": [
+          "risk"
+        ],
+        "summary": "运营商会员赢利列表",
+        "description": "运营商会员赢利列表",
+        "operationId": "userProfitPage",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "type": "integer",
+            "name": "page",
+            "description": "页码",
+            "default": "1"
+          },
+          {
+            "in": "query",
+            "type": "integer",
+            "name": "pageSize",
+            "description": "页大小",
+            "default": "50"
+          },
+          {
+            "in": "query",
+            "type": "string",
+            "name": "optCode",
+            "description": "运营商编号"
+          },
+          {
+            "in": "query",
+            "type": "string",
+            "name": "month",
+            "description": "月份 例如: 2019-10"
+          },
+          {
+            "in": "query",
+            "type": "string",
+            "name": "username",
+            "description": "用户名"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "返回",
+            "schema": {
+              "$ref": "#/definitions/rickUserProfitResp"
+            }
+          },
+          "400": {
+            "description": "错误",
+            "schema": {
+              "$ref": "#/definitions/response"
+            }
+          }
+        }
+      }
+    },
+    "/risk/issueProfit": {
+      "get": {
+        "tags": [
+          "risk"
+        ],
+        "summary": "查询期数利润数据",
+        "description": "查询期数利润数据",
+        "operationId": "issueProfit",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "type": "string",
+            "name": "optCode",
+            "description": "运营商编号"
+          },
+          {
+            "in": "query",
+            "type": "string",
+            "name": "itemCode",
+            "description": "彩种编号"
+          },
+          {
+            "in": "query",
+            "type": "string",
+            "name": "issueNo",
+            "description": "期号"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "返回",
+            "schema": {
+              "$ref": "#/definitions/issueProfitResp"
+            }
+          },
+          "400": {
+            "description": "错误",
+            "schema": {
+              "$ref": "#/definitions/response"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "issueProfitResp": {
+      "type": "object",
+      "properties": {
+        "optCode": {
+          "type": "string",
+          "description": "运营商唯一编号"
+        },
+        "itemCode": {
+          "type": "string",
+          "description": "彩种编号"
+        },
+        "periodNo": {
+          "type": "string",
+          "description": "期号"
+        },
+        "validAmount": {
+          "type": "string",
+          "description": "本期注额"
+        },
+        "winAmount": {
+          "type": "string",
+          "description": "本期输赢"
+        }
+      }
+    },
+    "rickUserProfitResp": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "页码",
+          "example": 1
+        },
+        "totalPage": {
+          "type": "integer",
+          "description": "总页数",
+          "example": 500
+        },
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rickUserProfit"
+          },
+          "description": "用户赢利集合"
+        }
+      }
+    },
+    "rickUserProfit": {
+      "type": "object",
+      "description": "用户盈利对象",
+      "properties": {
+        "userID": {
+          "type": "integer",
+          "description": "用户ID",
+          "example": 1
+        },
+        "username": {
+          "type": "string",
+          "description": "用户账号",
+          "example": "zhangsan"
+        },
+        "realname": {
+          "type": "string",
+          "description": "用户真实姓名",
+          "example": "张三"
+        },
+        "withdrawAccount": {
+          "type": "string",
+          "description": "卡号",
+          "example": "630495837405823748596"
+        },
+        "parentUserID": {
+          "type": "integer",
+          "description": "上级ID",
+          "example": 2
+        },
+        "parentUserName": {
+          "type": "string",
+          "description": "上级名称",
+          "example": "李四"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "创建时间（注册时间） 例如: 2018-11-10 16:21:34",
+          "example": "2018-11-10 16:21:34"
+        },
+        "validOrderAmount": {
+          "type": "string",
+          "description": "有效投注额"
+        },
+        "winAmount": {
+          "type": "string",
+          "description": "投注赢利"
+        },
+        "account": {
+          "type": "string",
+          "description": "钱包金额 例如：￥79,260.00"
+        },
+        "cashInAmount": {
+          "type": "string",
+          "description": "总存入金额"
+        },
+        "cashOutAmount": {
+          "type": "string",
+          "description": "总取金额"
+        },
+        "humanCashInCount": {
+          "type": "string",
+          "description": "人工存入笔数"
+        },
+        "humanCashInAmount": {
+          "type": "string",
+          "description": "人工存入金额"
+        },
+        "humanCashOutCount": {
+          "type": "string",
+          "description": "人工取出笔数"
+        },
+        "humanCashOutAmount": {
+          "type": "string",
+          "description": "人工取出金额"
+        },
+        "status": {
+          "type": "integer",
+          "description": "用户状态 0.不可用 1.可用"
+        }
+      }
+    },
+    "riskOrderResp": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "页码"
+        },
+        "totalPage": {
+          "type": "integer",
+          "description": "总页数"
+        },
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/riskOrderDetail"
+          },
+          "description": "订单"
+        }
+      }
+    },
+    "riskOrderTotalResp": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "页码"
+        },
+        "totalPage": {
+          "type": "integer",
+          "description": "总页数"
+        },
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/riskOrder"
+          },
+          "description": "订单"
+        },
+        "total": {
+          "items": {
+            "$ref": "#/definitions/rickOrderTotal"
+          },
+          "description": "订单"
+        }
+      }
+    },
+    "rickOrderTotal": {
+      "type": "object",
+      "properties": {
+        "orderCount": {
+          "type": "integer",
+          "description": "订单数"
+        },
+        "orderTotalAmount": {
+          "type": "string",
+          "description": "总投注额 例如：￥79,260.00"
+        },
+        "orderValidAmount": {
+          "type": "string",
+          "description": "有效投注额 例如：￥79,260.00"
+        },
+        "lostWinAmount": {
+          "type": "string",
+          "description": "输赢 例如：￥79,260.00"
+        },
+        "commissionAmount": {
+          "type": "string",
+          "description": "级别拥金/返水 例如：￥79,260.00"
+        },
+        "totalAmount": {
+          "type": "string",
+          "description": "总计"
+        }
+      }
+    },
+    "riskOrderDetail": {
+      "type": "object",
+      "description": "注单详情",
+      "properties": {
+        "orderNo": {
+          "type": "string",
+          "description": "注单编号"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "下注时间"
+        },
+        "itemCode": {
+          "type": "string",
+          "description": "彩种编号"
+        },
+        "itemName": {
+          "type": "string",
+          "description": "彩种名称"
+        },
+        "username": {
+          "type": "string",
+          "description": "用户账号"
+        },
+        "multOdds": {
+          "type": "string",
+          "description": "赔率"
+        },
+        "gameName": {
+          "type": "string",
+          "description": "玩法名称"
+        },
+        "validNoteCount": {
+          "type": "integer",
+          "description": "注数"
+        },
+        "amount": {
+          "type": "string",
+          "description": "投注金额"
+        },
+        "validAmount": {
+          "type": "string",
+          "description": "有效投注金额"
+        },
+        "profit": {
+          "type": "string",
+          "description": "输赢"
+        }
+      }
+    },
+    "riskOrder": {
+      "type": "object",
+      "properties": {
+        "reportDate": {
+          "type": "string",
+          "description": "报告日期 格式 20190717"
+        },
+        "orderCount": {
+          "type": "integer",
+          "description": "下注数量"
+        },
+        "orderTotalAmount": {
+          "type": "string",
+          "description": "总投注金额 例如：￥35,000.00"
+        },
+        "orderValidAmount": {
+          "type": "string",
+          "description": "有效投注额  例如：￥35,000.00"
+        },
+        "lostWinAmount": {
+          "type": "string",
+          "description": "输赢金额 例如： ￥24,520.00"
+        },
+        "myCommissionFromChildrenAmount": {
+          "type": "string",
+          "description": "级别拥金 例如： ￥24,520.00"
+        },
+        "total": {
+          "type": "string",
+          "description": "总计 例如： ￥24,520.00"
+        }
+      }
+    },
+    "riskUserResp": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "description": "页码"
+        },
+        "totalPage": {
+          "type": "integer",
+          "description": "总页数"
+        },
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/riskUser"
+          },
+          "description": "用户列表"
+        }
+      }
+    },
+    "riskUser": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "唯一ID",
+          "type": "integer"
+        },
+        "optCode": {
+          "type": "string",
+          "description": "运营商编号"
+        },
+        "optName": {
+          "type": "string",
+          "description": "运营商名称"
+        },
+        "username": {
+          "type": "string",
+          "description": "用户名"
+        },
+        "realName": {
+          "type": "string",
+          "description": "真实姓名"
+        },
+        "withdrawAccount": {
+          "type": "string",
+          "description": "银行卡"
+        },
+        "account": {
+          "type": "string",
+          "description": "主钱包金额 例如：￥50,045,111.00"
+        },
+        "cashInAmount": {
+          "type": "string",
+          "description": "总存款 例如：￥50,045,111.00"
+        },
+        "cashOutAmount": {
+          "type": "string",
+          "description": "总取款 例如：￥50,045,111.00"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "账户创建时间（注册时间） 例如：2019-07-11 10:24"
+        },
+        "registerIP": {
+          "type": "string",
+          "description": "注册IP 例如：202.118.128.106"
+        },
+        "lastLoginTime": {
+          "type": "string",
+          "description": "最后一次登录时间 例如：2019-07-11 10:24"
+        },
+        "lastLoginIP": {
+          "type": "string",
+          "description": "最后一次登录IP 例如：202.118.128.106"
+        },
+        "status": {
+          "type": "integer",
+          "description": "用户状态 0.停用 1.可用"
+        }
+      }
+    },
+    "response": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int"
+        },
+        "msg": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
